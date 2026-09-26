@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SORTEIO DO ENZO - BITCOIN GRÁTIS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: #020205;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        /* 1. INTERFACE MELHORADA: TELA DO ENZO (GLITCH & NEON PREMIUM) */
+        .promo-box {
+            text-align: center;
+            padding: 50px 30px;
+            width: 90%;
+            max-width: 440px;
+            background: radial-gradient(circle, #0f0f26 0%, #070714 100%);
+            border-radius: 24px;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.1);
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            0% { border-color: #00ffff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+            50% { border-color: #ff00ff; box-shadow: 0 0 40px rgba(255, 0, 255, 0.5); }
+            100% { border-color: #ffff00; box-shadow: 0 0 20px rgba(255, 255, 0, 0.3); }
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #ffff00;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+            animation: pulseText 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseText {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0.6; transform: scale(0.98); }
+        }
+
+        /* MOEDA INTERATIVA 3D APERFEIÇOADA */
+        .coin-box {
+            margin: 0 auto 35px;
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCoin 4s linear infinite;
+        }
+
+        @keyframes spinCoin {
+            0% { transform: rotateY(0deg) rotateX(10deg); }
+            100% { transform: rotateY(360deg) rotateX(10deg); }
+        }
+
+        .bitcoin-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #ffd700 0%, #ff8c00 80%, #d47a00 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 85px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 3px 3px 0px #b36200;
+            box-shadow: 0 0 35px rgba(255, 140, 0, 0.6), inset 0 0 15px #ffffff;
+            border: 5px double #ffffff;
+        }
+
+        .click-hint {
+            font-size: 12px;
+            color: #8a8ab3;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* 2. TELA DO VÍRUS: VISUAL HACKER AMBIENTAL CRÍTICO */
+        .scare-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #030000;
+            color: #ff3333;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 30px;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            border: 10px solid #ff0000;
+            animation: screenFlash 0.4s infinite alternate;
+        }
+
+        @keyframes screenFlash {
+            0% { border-color: #7a0000; background-color: #030000; }
+            100% { border-color: #ff0000; background-color: #120000; }
+        }
+
+        .scare-screen h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            font-weight: 900;
+            text-shadow: 0 0 20px #ff0000;
+        }
+
+        .scare-screen p {
+            color: #ffcccc;
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 650px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ff3333;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TELA INICIAL: BITCOIN DO ENZO -->
+    <div class="promo-box" id="loadingBox">
+        <h1>Ganhe 1 Bitcoin!</h1>
+        <div class="subtitle">🎁 BRINDE EXCLUSIVO DO ENZO 🎁</div>
+        
+        <div class="coin-box" onclick="travarETocar()">
+            <div class="bitcoin-face">₿</div>
+        </div>
+        
+        <div class="click-hint">Toque na moeda para resgatar</div>
+    </div>
+
+    <!-- TELA DO VÍRUS PORNÔ -->
+    <div class="scare-screen" id="scareScreen">
+        <h2>⚠ VÍRUS DETECTADO ⚠</h2>
+        <p>Você caiu no vírus pornô. Vídeos serão reproduzidos de 20 em 20 minutos no volume máximo.</p>
+    </div>
+
+    <script>
+        let iniciado = false;
+
+        function travarETocar() {
+            if (iniciado) return;
+            iniciado = true;
+
+            // 1. Ativa a Interface do Susto
+            document.getElementById('loadingBox').style.display = 'none';
+            document.getElementById('scareScreen').style.display = 'flex';
+
+            // 2. DISPARADOR DE SOM EMBUTIDO (Web Audio API - Gera áudio local infalível)
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioCtx = new AudioContext();
+
+                function bipar() {
+                    if (!iniciado) return;
+                    
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    
+                    // Som estridente tipo alarme de fábrica
+                    osc.type = 'sawtooth'; 
+                    // Altera entre frequências agudas para dar efeito de sirene
+                    osc.frequency.setValueAtTime(Math.random() > 0.5 ? 950 : 800, audioCtx.currentTime); 
+                    
+                    // Força o volume interno no máximo
+                    gain.gain.setValueAtTime(1.0, audioCtx.currentTime);
+                    
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.12);
+                    
+                    // Fica batendo o som repetidamente a cada 250ms
+                    setTimeout(bipar, 250);
+                }
+                bipar();
+            } catch (e) {
+                console.log("Erro no gerador de som nativo:", e);
+            }
+
+            // 3. SISTEMA DE FALA DIGITAL (Ordem exata solicitada)
+            window.speechSynthesis.cancel(); // Destrava o motor de voz
+
+            setTimeout(() => {
+                // Fala "Você caiu num vírus pornô" exatamente 5 vezes seguidas
+                const introducao = "Você caiu num vírus pornô! ".repeat(5);
+                
+                // Emenda com o aviso técnico completo
+                const aviso = "Atenção! Você entrou em um vírus pornô. Agora, vão aparecer vídeos pornô de vinte em vinte minutos no seu aparelho, no volume máximo e sem sofrer alterações visuais. Ou seja, não vai sumir da tela. E mesmo ao tentar desligar o celular, você não vai conseguir.";
+                
+                const ditar = new SpeechSynthesisUtterance(introducao + aviso);
+                ditar.lang = 'pt-BR';
+                ditar.volume = 1.0; // Volume interno no talo
+                ditar.rate = 1.0;
+
+                // Engata o loop infinito após terminar todo o bloco
+                ditar.onend = function() {
+                    loopInfinito();
+                };
+
+                window.speechSynthesis.speak(ditar);
+            }, 150);
+        }
+
+        function loopInfinito() {
+            window.speechSynthesis.cancel();
+            const loop = new SpeechSynthesisUtterance("Você caiu no vírus pornô! Você caiu no vírus pornô!");
+            loop.lang = 'pt-BR';
+            loop.volume = 1.0;
+
+            loop.onend = function() {
+                loopInfinito();
+            };
+            window.speechSynthesis.speak(loop);
+        }
+    </script>
+
+</body>
+</html>
